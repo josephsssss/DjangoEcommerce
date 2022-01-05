@@ -7,7 +7,7 @@ class Cart(models.Model):
     date_added = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.cart_id
+        return self.cart_id.__str__()
 
 
 class CartItem(models.Model):
@@ -16,5 +16,8 @@ class CartItem(models.Model):
     quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
 
+    def sub_total(self):
+        return self.product.price * self.quantity
+
     def __str__(self):
-        return self.product
+        return self.product.__str__()
